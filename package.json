@@ -1,0 +1,53 @@
+{
+	"name": "code-linter",
+	"version": "0.0.1",
+	"author": "linus.bolls@code.berlin",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"start": "PORT=5173 NEXTAUTH_URL=https://127.0.0.1:5173/api/auth/session AUTH_TRUST_HOST=https://127.0.0.1:5173/api/auth/session node dist",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write ."
+	},
+	"devDependencies": {
+		"@fontsource/fira-mono": "^4.5.10",
+		"@neoconfetti/svelte": "^1.0.0",
+		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/adapter-static": "^1.0.0",
+		"@sveltejs/kit": "next",
+		"@types/cookie": "^0.5.1",
+		"@types/mongoose": "^5.11.97",
+		"@types/random-seed": "^0.3.3",
+		"@types/uuid": "^9.0.0",
+		"@typescript-eslint/eslint-plugin": "^5.45.0",
+		"@typescript-eslint/parser": "^5.45.0",
+		"@zerodevx/svelte-toast": "^0.8.2",
+		"eslint": "^8.28.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"prettier": "^2.8.0",
+		"prettier-plugin-svelte": "^2.8.1",
+		"smui-theme": "^7.0.0-beta.0",
+		"svelte": "^3.54.0",
+		"svelte-check": "^2.9.2",
+		"tslib": "^2.4.1",
+		"typescript": "^4.9.3",
+		"vite": "^4.0.0"
+	},
+	"type": "module",
+	"dependencies": {
+		"@auth/core": "^0.1.4",
+		"@auth/sveltekit": "^0.1.6",
+		"@fortawesome/free-brands-svg-icons": "^6.2.1",
+		"@sveltejs/adapter-node": "^1.0.0",
+		"svelte-toolbox": "^0.6.1",
+		"unist-util-visit": "^4.1.1"
+	},
+	"engines": {
+		"npm": ">=8.15.0",
+		"node": ">=18.7.0"
+	}
+}
