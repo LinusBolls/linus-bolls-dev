@@ -63,12 +63,22 @@ END:VCARD`;
 </svelte:head>
 
 <main>
+	<img src="/linusBollsAvatar.png" alt="Google Profile Picture of Linus Bolls" class="pb" />
 	<BusinessCard vcard={LINUS_BOLLS_VCARD} {properties} {title}>
 		<LinusBollsVcardQrCode />
 	</BusinessCard>
 </main>
 
 <style>
+	.pb {
+		width: 66%;
+		max-width: 15rem;
+		aspect-ratio: 1;
+
+		margin-bottom: 3rem;
+
+		border-radius: 50%;
+	}
 	* {
 		box-sizing: border-box;
 	}
