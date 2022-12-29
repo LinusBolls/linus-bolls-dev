@@ -119,8 +119,6 @@
 		align-items: center;
 		justify-content: center;
 
-		border-radius: var(--borderRadius);
-
 		cursor: pointer;
 
 		font-size: 1rem;

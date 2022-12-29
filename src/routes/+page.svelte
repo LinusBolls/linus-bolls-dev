@@ -63,6 +63,7 @@ END:VCARD`;
 </svelte:head>
 
 <main>
+	<!-- svelte-ignore a11y-img-redundant-alt -->
 	<img src="/linusBollsAvatar.png" alt="Google Profile Picture of Linus Bolls" class="pb" />
 	<BusinessCard vcard={LINUS_BOLLS_VCARD} {properties} {title}>
 		<LinusBollsVcardQrCode />
@@ -77,7 +78,7 @@ END:VCARD`;
 
 		margin-bottom: 3rem;
 
-		border-radius: 50%;
+		border: var(--borderRadius) solid white;
 	}
 	* {
 		box-sizing: border-box;
