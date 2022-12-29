@@ -2,6 +2,7 @@
 	"name": "code-linter",
 	"version": "0.0.1",
 	"author": "linus.bolls@code.berlin",
+	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",

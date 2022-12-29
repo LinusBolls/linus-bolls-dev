@@ -25,10 +25,10 @@ app.use(cors())
 
 app.disable('x-powered-by')
 
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/dist'))
 
 app.get('/*', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html')
+    res.sendFile(__dirname + '/dist/index.html')
 })
 
 server.listen(PORT, () => {

@@ -28,16 +28,16 @@ END:VCARD`;
 			icon: Email
 		},
 		{
-			key: 'Paypal',
-			value: 'linus.bolls@gmail.com',
-			href: 'https://paypal.me/LinusBolls',
-			icon: Paypal
-		},
-		{
 			key: 'Signal',
 			value: '+49 176 42004388',
 			href: 'tel:+4917642004388',
 			icon: Signal
+		},
+		{
+			key: 'Paypal',
+			value: 'https://paypal.me/LinusBolls',
+			href: 'https://paypal.me/LinusBolls',
+			icon: Paypal
 		},
 		{
 			key: 'Github',
