@@ -7,7 +7,18 @@
 	export let value: string;
 	export let href: string;
 
+	export let isActive = false;
+
 	const tooltip = key + ': ' + value;
+
+	// let windowReference = window.open();
+
+	// // later
+	// windowReference!.location = url;
+
+	// setTimeout(() => {
+	// 	window.open(url, '_blank');
+	// });
 
 	/**
 	 * urls with a protocol other than https should be opened in the same tab ("_self"),
@@ -16,7 +27,9 @@
 	const linkTarget = href.startsWith('https://') ? '_blank' : '_self';
 
 	function handleClick() {
-		window.open(href, linkTarget);
+		setTimeout(() => {
+			window.open(href, linkTarget);
+		});
 	}
 	function copyToClipboard(data: string) {
 		navigator.clipboard.writeText(data).then(
@@ -29,7 +42,11 @@
 </script>
 
 <Ripple color="white" on:rippleEnded={handleClick}>
-	<button class="propertyRow" role="link" title={tooltip}>
+	<button
+		class={'propertyRow' + (isActive ? ' propertyRow--active' : '')}
+		role="link"
+		title={tooltip}
+	>
 		<div class="squareIcon">
 			<slot />
 		</div>
@@ -53,9 +70,6 @@
 
 		transition-duration: var(--propertyTransitionDuration);
 	}
-	.propertyRow:hover :global(svg) {
-		fill: var(--propertyColorHover);
-	}
 	.propertyRow span {
 		width: 100%;
 		text-align: start;
@@ -74,7 +88,7 @@
 
 		text-decoration: underline;
 
-		color: var(--propertyColorDefault);
+		color: var(--propertyColorDefault) !important;
 
 		text-decoration-color: var(--propertyColorDefault) !important;
 
@@ -93,14 +107,22 @@
 
 		transition-duration: var(--propertyTransitionDuration);
 	}
-	.propertyRow:hover {
+	.propertyRow:hover,
+	.propertyRow.propertyRow--active {
 		background: var(--propertyBackgroundHover);
 
 		border-left: var(--borderRadius) solid var(--propertyBorderHover) !important;
 		border-right-width: 0px !important;
 
-		color: var(--propertyColorHover);
+		color: var(--propertyColorHover) !important;
 		text-decoration-color: var(--propertyColorHover) !important;
+	}
+	.propertyRow:hover :global(svg),
+	.propertyRow.propertyRow--active :global(svg) {
+		fill: var(--propertyColorHover);
+	}
+	.propertyRow:not(:hover):not(.propertyRow--active) .squareButton {
+		opacity: 0;
 	}
 	.squareIcon {
 		display: flex;
@@ -116,9 +138,6 @@
 		}
 	}
 
-	.propertyRow:not(:hover) .squareButton {
-		opacity: 0;
-	}
 	.squareButton {
 		position: relative;
 

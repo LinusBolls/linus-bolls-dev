@@ -22,18 +22,21 @@ import adapter from '@sveltejs/adapter-static';
 const config = {
 	kit: {
 		adapter: adapter({
-			// default options are shown
 			pages: 'dist',
 			assets: 'dist',
-			fallback: null
+			fallback: null,
 		}),
+		csp: {
+			mode: "auto",
+			directives: {
+				"script-src": ["self", "unsafe-inline"],
+			},
+		},
 	},
-
 	preprocess: [
 		preprocess({
 			postcss: true,
 		}),
 	],
 };
-
 export default config;

@@ -36,6 +36,15 @@
 	function addToContacts() {
 		downloadURI(vcardUri, 'Linus Bolls.vcf');
 	}
+	const activeProperties = properties.map(() => false);
+
+	async function ripple() {
+		for (const idx of activeProperties.keys()) {
+			setTimeout(() => (activeProperties[idx] = true), idx * 50 + 50);
+			setTimeout(() => (activeProperties[idx] = false), idx * 70 + 70);
+		}
+	}
+	// setTimeout(ripple, 100);
 </script>
 
 <div class="businessCard">
@@ -51,8 +60,8 @@
 			<slot />
 		</div>
 		<div class="propertyContainer">
-			{#each properties as { key, value, href, icon }}
-				<PropertyRow {key} {value} {href}>
+			{#each properties as { key, value, href, icon }, idx}
+				<PropertyRow {key} {value} {href} isActive={activeProperties[idx]}>
 					<svelte:component this={icon} />
 				</PropertyRow>
 			{/each}

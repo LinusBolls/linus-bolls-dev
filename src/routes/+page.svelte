@@ -53,11 +53,13 @@ END:VCARD`;
 		}
 	];
 	const title = 'Linus Alexander Bolls';
+
+	const metaDescription = properties.map((i) => i.key).join(', ');
 </script>
 
 <svelte:head>
 	<title>Linus Bolls - Contact Info</title>
-	<meta name="description" content="Contact me" />
+	<meta name="description" content={metaDescription} />
 </svelte:head>
 
 <main>
