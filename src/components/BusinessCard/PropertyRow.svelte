@@ -26,6 +26,8 @@
 	 */
 	const linkTarget = href.startsWith('https://') ? '_blank' : '_self';
 
+	// rel="preconnect"
+
 	function handleClick() {
 		setTimeout(() => {
 			window.open(href, linkTarget);
@@ -42,6 +44,7 @@
 </script>
 
 <Ripple color="white" on:rippleEnded={handleClick}>
+	<!-- svelte-ignore a11y-missing-content -->
 	<button
 		class={'propertyRow' + (isActive ? ' propertyRow--active' : '')}
 		role="link"

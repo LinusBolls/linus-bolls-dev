@@ -64,7 +64,11 @@ END:VCARD`;
 
 <main>
 	<!-- svelte-ignore a11y-img-redundant-alt -->
-	<img src="/linusBollsAvatar.png" alt="Google Profile Picture of Linus Bolls" class="pb" />
+	<picture>
+		<source type="image/webp" srcset="/linusBollsAvatar.webp" />
+		<img src="/linusBollsAvatar.png" alt="Google Profile Picture of Linus Bolls" class="pb" />
+	</picture>
+
 	<BusinessCard vcard={LINUS_BOLLS_VCARD} {properties} {title}>
 		<LinusBollsVcardQrCode />
 	</BusinessCard>
