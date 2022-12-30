@@ -11,6 +11,18 @@
 
 	const tooltip = key + ': ' + value;
 
+	let touchHoldTimer: any;
+
+	function touchStart() {
+		touchHoldTimer = setTimeout(() => {
+			copyToClipboard(value);
+			alert(`Copied '${value}' to clipboard`);
+		}, 500);
+	}
+	function touchEnd() {
+		if (touchHoldTimer) clearTimeout(touchHoldTimer);
+	}
+
 	// let windowReference = window.open();
 
 	// // later
@@ -33,13 +45,56 @@
 			window.open(href, linkTarget);
 		});
 	}
-	function copyToClipboard(data: string) {
-		navigator.clipboard.writeText(data).then(
-			() => {},
-			(err) => {
-				console.error('Failed to copy data to clipboard: ', err);
+	// function copyToClipboard(data: string) {
+	// 	navigator.clipboard.writeText(data).then(
+	// 		() => {},
+	// 		(err) => {
+	// 			console.error('Failed to copy data to clipboard: ', err);
+	// 		}
+	// 	);
+	// }
+	function copyToClipboard(string: string) {
+		let textarea;
+		let result;
+
+		try {
+			textarea = document.createElement('textarea');
+			textarea.setAttribute('readonly', true);
+			textarea.setAttribute('contenteditable', true);
+			textarea.style.position = 'fixed'; // prevent scroll from jumping to the bottom when focus is set.
+			textarea.value = string;
+
+			document.body.appendChild(textarea);
+
+			textarea.focus();
+			textarea.select();
+
+			const range = document.createRange();
+			range.selectNodeContents(textarea);
+
+			const sel = window.getSelection();
+			sel.removeAllRanges();
+			sel.addRange(range);
+
+			textarea.setSelectionRange(0, textarea.value.length);
+			result = document.execCommand('copy');
+		} catch (err) {
+			console.error(err);
+			result = null;
+		} finally {
+			document.body.removeChild(textarea);
+		}
+
+		// manual copy fallback using prompt
+		if (!result) {
+			const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+			const copyHotkey = isMac ? '⌘C' : 'CTRL+C';
+			result = prompt(`Press ${copyHotkey}`, string); // eslint-disable-line no-alert
+			if (!result) {
+				return false;
 			}
-		);
+		}
+		return true;
 	}
 </script>
 
@@ -49,6 +104,8 @@
 		class={'propertyRow' + (isActive ? ' propertyRow--active' : '')}
 		role="link"
 		title={tooltip}
+		on:touchstart={touchStart}
+		on:touchend={touchEnd}
 	>
 		<div class="squareIcon">
 			<slot />
@@ -85,6 +142,11 @@
 		position: relative;
 		display: flex;
 		align-items: center;
+
+		-webkit-user-select: none; /* Chrome all / Safari all */
+		-moz-user-select: none; /* Firefox all */
+		-ms-user-select: none; /* IE 10+ */
+		user-select: none; /* Likely future */
 
 		width: 100%;
 		height: 3rem;

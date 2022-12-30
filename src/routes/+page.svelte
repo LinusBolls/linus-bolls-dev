@@ -84,9 +84,12 @@ END:VCARD`;
 		max-width: 15rem;
 		aspect-ratio: 1;
 
+		margin-top: 3rem;
 		margin-bottom: 3rem;
 
-		border: var(--borderRadius) solid white;
+		/* border: var(--borderRadius) solid white; */
+
+		box-shadow: var(--boxShadow);
 	}
 	* {
 		box-sizing: border-box;
@@ -113,7 +116,18 @@ END:VCARD`;
 		--borderRadius: 2px;
 	}
 	:global(body) {
-		background: var(--notQuiteBlack);
+		background-color: var(--notQuiteBlack);
+
+		/* blatantly copied from spotify */
+		background: linear-gradient(
+			356deg,
+			black 0%,
+			rgba(25, 25, 25, 1) 35%,
+			rgba(75, 75, 75, 1) 100%
+		);
+
+		/* uses the red from my hoodie */
+		background: linear-gradient(356deg, black 0%, rgb(30, 10, 7) 35%, rgb(91, 28, 21) 100%);
 	}
 	main {
 		display: flex;
