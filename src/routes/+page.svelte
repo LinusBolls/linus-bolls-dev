@@ -63,31 +63,54 @@ END:VCARD`;
 </svelte:head>
 
 <main>
-	<!-- svelte-ignore a11y-img-redundant-alt -->
-	<picture class="pb">
-		<source type="image/webp" srcset="/linusBollsAvatar.webp" />
-		<img
-			src="/linusBollsAvatar.png"
-			alt="Avatar of Linus Bolls"
-			style="width: 100%; height: 100%"
-		/>
-	</picture>
+	<div class="sache">
+		<!-- svelte-ignore a11y-img-redundant-alt -->
+		<picture class="pb">
+			<source type="image/webp" srcset="/linusBollsAvatar.webp" />
+			<img
+				src="/linusBollsAvatar.png"
+				alt="Avatar of Linus Bolls"
+				style="width: 100%; height: 100%"
+			/>
+		</picture>
+	</div>
 
-	<BusinessCard vcard={LINUS_BOLLS_VCARD} {properties} {title}>
-		<LinusBollsVcardQrCode />
-	</BusinessCard>
+	<div class="ding">
+		<BusinessCard vcard={LINUS_BOLLS_VCARD} {properties} {title}>
+			<LinusBollsVcardQrCode />
+		</BusinessCard>
+	</div>
 </main>
 
 <style>
-	.pb {
-		width: 66%;
-		max-width: 15rem;
+	.ding {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		flex-direction: column;
+		flex: 1;
+
+		width: calc(100% - 2rem);
+		max-width: 70rem;
+	}
+	@media screen and (min-width: 600px) {
+		.sache {
+			height: calc(15rem + 6rem);
+			aspect-ratio: unset !important;
+		}
+	}
+	.sache {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		width: 100%;
 		aspect-ratio: 1;
-
-		margin-top: 3rem;
-		margin-bottom: 3rem;
-
-		/* border: var(--borderRadius) solid white; */
+	}
+	.pb {
+		width: 62.5%;
+		max-width: 15rem;
+		max-height: 15rem;
 
 		box-shadow: var(--boxShadow);
 	}
