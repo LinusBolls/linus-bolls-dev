@@ -98,15 +98,17 @@
 	}
 </script>
 
+<!-- on:touchstart={touchStart}
+on:touchend={touchEnd} -->
+
 <Ripple color="white" on:rippleEnded={handleClick}>
 	<!-- svelte-ignore a11y-missing-content -->
 	<button
 		class={'propertyRow' + (isActive ? ' propertyRow--active' : '')}
 		role="link"
 		title={tooltip}
-		on:touchstart={touchStart}
-		on:touchend={touchEnd}
 	>
+		>
 		<div class="squareIcon">
 			<slot />
 		</div>

@@ -92,6 +92,7 @@ END:VCARD`;
 
 		width: calc(100% - 2rem);
 		max-width: 70rem;
+		margin-bottom: 3rem;
 	}
 	@media screen and (min-width: 600px) {
 		.sache {
@@ -110,9 +111,11 @@ END:VCARD`;
 	.pb {
 		width: 62.5%;
 		max-width: 15rem;
-		max-height: 15rem;
+		aspect-ratio: 1;
 
 		box-shadow: var(--boxShadow);
+
+		overflow: hidden;
 	}
 	* {
 		box-sizing: border-box;
