@@ -108,7 +108,6 @@ on:touchend={touchEnd} -->
 		role="link"
 		title={tooltip}
 	>
-		>
 		<div class="squareIcon">
 			<slot />
 		</div>
